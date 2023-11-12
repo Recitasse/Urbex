@@ -1,0 +1,11 @@
+SET GLOBAL validate_password.policy = 'LOW';
+CREATE USER IF NOT EXISTS '$urbex'@'127.0.1.155' IDENTIFIED WITH 'mysql_native_password' BY '@UrbexPAS1';
+
+DROP USER IF EXISTS ''@'127.0.1.155';
+DROP USER IF EXISTS ''@'$(hostname)';
+
+DROP DATABASE IF EXISTS test;
+
+FLUSH PRIVILEGES;
+
+CREATE DATABASE IF NOT EXISTS Urbex;
