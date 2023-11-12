@@ -52,6 +52,9 @@ CREATE TABLE IF NOT EXISTS `Urbex`.`city` (
   `city_id` INT NOT NULL,
   `city_name` VARCHAR(155) NOT NULL,
   `city_localisation` VARCHAR(45) NOT NULL,
+  `city_code` VARCHAR(6) NOT NULL,
+  `city_departement` VARCHAR(150) NOT NULL,
+  `city_region` VARCHAR(150), NOT NULL,
   PRIMARY KEY (`city_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4

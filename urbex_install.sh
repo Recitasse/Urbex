@@ -14,9 +14,14 @@ pip install -r requirements.txt
 
 # ========================================
 # install mysql
+MYSQL_USER="urbex"
+MYSQL_PASSWORD="@UrbexPAS1"
+MYSQL_DATABASE="Urbex"
+SQL_SCRIPT="database/database.sql"
+
 sudo apt install mysql-server
 sudo mysql < "database/init.sql"
-
+mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -D"$MYSQL_DATABASE" < "$SQL_SCRIPT"
 # =======================================
 file_path="/etc/hosts"
 line_to_search="127.0.5.5       urbex.com"
