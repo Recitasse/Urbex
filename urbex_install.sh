@@ -11,6 +11,7 @@ python3.11 -m venv venv
 source venv/bin/activate
 
 pip install -r requirements.txt
+pip install --upgrade mysql-connector-python
 
 # ========================================
 # install mysql
@@ -20,8 +21,7 @@ MYSQL_DATABASE="Urbex"
 SQL_SCRIPT="database/database.sql"
 
 sudo apt install mysql-server
-sudo mysql < "database/init.sql"
-mysql -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -D"$MYSQL_DATABASE" < "$SQL_SCRIPT"
+sudo mysql < "$SQL_SCRIPT"
 # =======================================
 file_path="/etc/hosts"
 line_to_search="127.0.5.5       urbex.com"

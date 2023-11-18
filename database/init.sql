@@ -1,8 +1,4 @@
-SET GLOBAL validate_password.policy = 'LOW';
 CREATE DATABASE IF NOT EXISTS Urbex;
-
-CREATE USER IF NOT EXISTS 'urbex'@'loclahost' IDENTIFIED BY '@UrbexPAS1';
-
-GRANT ALL PRIVILEGES ON Urbex.* TO 'urbex'@'localhost' WITH GRANT OPTION;
+CREATE USER 'urbex'@'loclahost' IDENTIFIED BY '@UrbexPAS1';
 
 FLUSH PRIVILEGES;
