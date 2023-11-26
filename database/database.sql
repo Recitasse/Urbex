@@ -51,7 +51,7 @@ COLLATE = utf8mb4_unicode_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `Urbex`.`city` (
   `city_id` INT AUTO_INCREMENT,
-  `spots_country` VARCHAR(2) NOT NULL DEFAULT 'FR',
+  `city_country` VARCHAR(2) NOT NULL DEFAULT 'FR',
   `city_name` VARCHAR(155) NOT NULL,
   `city_localisation` VARCHAR(45) NOT NULL,
   `city_code` VARCHAR(6) NOT NULL,

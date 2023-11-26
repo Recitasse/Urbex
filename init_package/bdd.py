@@ -67,8 +67,8 @@ class bdd:
     def insert_city(self, city: dict) -> None:
         """Insert in the database if the city doesnt not exist """
         self.open_cursor()
-        query = "INSERT INTO city (city_name, city_country, city_loc, city_code, city_department, city_region) VALUES (%s, %s, %s, %s, %s, %s)"
-        self.cursor.execute(query, (city['name'], city['country'], city['loc'], city['code'], city['department'], city['region'],))
+        query = "INSERT INTO city (city_name, city_country, city_localisation, city_code, city_departement, city_region) VALUES (%s, %s, %s, %s, %s, %s)"
+        self.cursor.execute(query, (city['region'], city['country'], city['loc'], city['code'], city['department'], city['region'],))
         self.conn.commit()
         self.close_cursor()
 
@@ -77,11 +77,11 @@ class bdd:
         Need an ID !"""
         query = """
             UPDATE city
-            SET city_name = %s, city_country = %s, city_localisation = %s, city_code = %s, city_department = %s, city_region = %s
+            SET city_name = %s, city_country = %s, city_localisation = %s, city_code = %s, city_departement = %s, city_region = %s
             WHERE city_id = %s
         """
         self.open_cursor()
-        self.cursor.execute(query, (city['name'], city['country'], city['loc'], city['code'], city['department'], city['region'],))
+        self.cursor.execute(query, (city['region'], city['country'], city['loc'], city['code'], city['department'], city['region'],))
         self.conn.commit()
         self.close_cursor()
 
@@ -99,7 +99,7 @@ class bdd:
             json_data = json.load(f)
 
         for city_dico in json_data['cities']:
-            self.insert_city(city_dico)
+            self.insert_city(self.rearange_dico(city_dico, "FR"))
 
     def set_cities_from_file(self, path: str, country: str) -> None:
         """Add cities from file in json format"""
@@ -294,5 +294,13 @@ class bdd:
         self.close_cursor()
         return rows
 
+    #####################################################
+    #                                                   #
+    #                       utils                       #
+    #                                                   #
+    #####################################################
 
-BDD = bdd()
+    @staticmethod
+    def rearange_dico(city_dico: dict, country: str = "FR") -> dict:
+        """Réarange le dictionnaire suivant le bon format"""
+        return {"name": city_dico['region_geojson_name'], "loc": city_dico['latitude']+", "+city_dico['longitude'], "code": city_dico["zip_code"], "department": city_dico["department_name"], "region": city_dico["region_geojson_name"], "country": country}
