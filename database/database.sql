@@ -23,6 +23,7 @@ USE `Urbex` ;
 CREATE TABLE IF NOT EXISTS `Urbex`.`users` (
   `users_id` INT AUTO_INCREMENT,
   `users_pseudo` VARCHAR(255) NOT NULL,
+  `users_center` VARCHAR(100) NOT NULL DEFAULT '46.980146, 2.551705',
   `users_grade` TINYINT(5) NOT NULL DEFAULT 0,
   `users_admin` TINYINT(1) NOT NULL DEFAULT 0,
   `users_join` VARCHAR(45) NOT NULL,
@@ -73,7 +74,9 @@ CREATE TABLE IF NOT EXISTS `Urbex`.`spots` (
   `spots_user` INT NOT NULL,
   `spots_loc` VARCHAR(45) NOT NULL DEFAULT 'None',
   `spots_difficulty` TINYINT(10) NOT NULL DEFAULT 3,
-  `spots_note` TINYINT(10) NOT NULL DEFAULT 5,
+  `spots_degradation` TINYINT(10) NOT NULL DEFAULT 5,
+  `spots_surveillance` TINYINT(10) NOT NULL DEFAULT 5,
+  `spots_interet` TINYINT(10) NOT NULL DEFAULT 3,
   `spots_link` VARCHAR(400) NULL,
   PRIMARY KEY (`spots_id`),
   INDEX `discoverer_idx` (`spots_user` ASC) VISIBLE,
