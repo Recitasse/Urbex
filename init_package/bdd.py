@@ -1,4 +1,5 @@
 import mysql.connector
+from robot.api.deco import keyword
 import json
 import os
 
@@ -155,7 +156,7 @@ class bdd:
         self.close_cursor()
 
     def insert_type_from_file(self, path: str) -> None:
-        """Insert a whole file"""
+
         if path is None or not os.path.exists(path):
             if not os.path.exists(path):
                 print(f"File {path} doesnt exist")
